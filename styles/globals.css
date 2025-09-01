@@ -1,0 +1,34 @@
+/* Reset/Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #000000, #010101, #000a14, #000000);
+    background-size: 400% 400%;
+    animation: degrade 15s ease infinite;
+    color: #fff;
+    overflow-x: hidden;
+  }
+  
+  section {
+    color: #fff;
+  }
+  
+  /* Keyframes */
+  @keyframes degrade {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+ 
