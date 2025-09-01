@@ -1,0 +1,62 @@
+# --------------------
+# Node.js
+# --------------------
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --------------------
+# Build output
+# --------------------
+.next
+out
+dist
+
+# --------------------
+# Sistema / IDE
+# --------------------
+.DS_Store
+Thumbs.db
+.vscode
+*.swp
+*.swo
+
+# --------------------
+# Logs
+# --------------------
+logs
+*.log
+*.log.*
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# --------------------
+# Ambiente / Credenciais
+# --------------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# --------------------
+# Banco de Dados (SQLite)
+# --------------------
+*.sqlite
+*.sqlite-journal
+
+# --------------------
+# Docker
+# --------------------
+docker-compose.override.yml
+.dockerignore
+
+# --------------------
+# Outras pastas temporárias
+# --------------------
+coverage
+.cache
