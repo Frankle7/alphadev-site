@@ -1,0 +1,157 @@
+/* Depoimentos com Animação e Dark Mode */
+
+.section-depoimentos {
+  padding: 60px 20px;
+  color: #fff;
+  background-color: #4b3e82;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.section-depoimentos .titulo {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.section-depoimentos .subtitulo {
+  text-align: center;
+  font-size: 1.125rem;
+  margin-bottom: 40px;
+  color: #d4d4d4;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.cards-depoimentos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.card-dev {
+  background-color: #624e92;
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
+}
+
+.card-dev:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.card-dev:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.card-dev:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.imagem-perfil {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #9b85cc;
+}
+
+.nome-dev {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.stack-dev {
+  font-size: 0.875rem;
+  color: #d4d4d4;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.estrelas {
+  color: gold;
+  font-size: 1.125rem;
+  margin-bottom: 15px;
+  user-select: none;
+}
+
+.descricao-dev {
+  font-size: 0.875rem;
+  color: #d4d4d4;
+  line-height: 1.4;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .cards-depoimentos {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .card-dev {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  .section-depoimentos .titulo {
+    font-size: 1.75rem;
+  }
+
+  .section-depoimentos .subtitulo {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    max-width: 90%;
+  }
+
+  .nome-dev {
+    font-size: 1rem;
+  }
+
+  .stack-dev,
+  .descricao-dev {
+    font-size: 0.875rem;
+  }
+
+  .estrelas {
+    font-size: 1rem;
+  }
+}
+
+/* DARK MODE AUTOMÁTICO */
+@media (prefers-color-scheme: dark) {
+  .section-depoimentos {
+    background-color: #1d1b35;
+    color: #f0f0f0;
+  }
+
+  .card-dev {
+    background-color: #2b264c;
+  }
+
+  .stack-dev,
+  .descricao-dev,
+  .section-depoimentos .subtitulo {
+    color: #bdbdbd;
+  }
+
+  .imagem-perfil {
+    border-color: #7e6bd2;
+  }
+}
