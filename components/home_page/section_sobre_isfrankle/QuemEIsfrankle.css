@@ -1,0 +1,139 @@
+/* Seção Quem é Isfrankle */
+.sobre-isfrankle {
+  padding: 80px 20px;
+  background: url('/assets/images/robt.jpg') no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+.sobre-isfrankle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(13, 13, 27, 0.8);
+  /* camada escura sobre a imagem */
+  z-index: -1;
+}
+
+.sobre-isfrankle .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sobre-isfrankle .titulo {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  animation: fadeInDown 0.8s ease-in-out;
+}
+
+.sobre-isfrankle .descricao {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  margin-bottom: 60px;
+  line-height: 1.7;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.sobre-isfrankle .valores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.sobre-isfrankle .valor {
+  background-color: #1a1a3d;
+  padding: 30px 20px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+.sobre-isfrankle .valor:hover {
+  background-color: #2d2786;
+  transform: translateY(-5px);
+}
+
+.sobre-isfrankle .valor h3 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.sobre-isfrankle .valor p {
+  font-size: 1rem;
+  color: #d4d4d4;
+  line-height: 1.5;
+}
+
+/* Botão */
+.btn-primary {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #2d2786;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0d1cac;
+  transform: translateY(-3px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .sobre-isfrankle .valores {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sobre-isfrankle .titulo {
+    font-size: 2rem;
+  }
+
+  .sobre-isfrankle .descricao {
+    font-size: 1rem;
+  }
+}
+
+/* Animações suaves */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
