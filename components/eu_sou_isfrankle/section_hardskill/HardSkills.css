@@ -1,0 +1,87 @@
+.hardskills-container {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.hardskills-container h1 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.skills-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.skills-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.skill-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  width: 140px;
+  min-width: 140px;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.skill-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.skill-card h3 {
+  font-size: 1rem;
+  margin: 0;
+  color: #f0f0f0;
+}
+
+/* Responsivo: tablets e celulares */
+@media (max-width: 768px) {
+  .hardskills-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .skill-card {
+    width: 120px;
+    min-width: 120px;
+    padding: 15px;
+  }
+
+  .skill-card img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .skill-card h3 {
+    font-size: 0.9rem;
+  }
+}
