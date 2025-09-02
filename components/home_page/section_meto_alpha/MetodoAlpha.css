@@ -1,0 +1,149 @@
+/* === Método Alpha | Clean e Responsivo === */
+
+.metodo-alpha {
+  padding: 80px 20px;
+  background-color: #0d0d1b;
+  color: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.metodo-alpha .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.metodo-alpha .titulo {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 50px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.metodo-alpha .conteudo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* === VIDEO === */
+.metodo-alpha .video {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.metodo-alpha .video video {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* === LINHA DO TEMPO === */
+.metodo-alpha .linha-do-tempo {
+  flex: 1;
+  min-width: 300px;
+  border-left: 2px solid #2d2786;
+  padding-left: 30px;
+  position: relative;
+}
+
+/* === CADA PASSO === */
+.metodo-alpha .passo {
+  margin-bottom: 40px;
+  position: relative;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.metodo-alpha .passo:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.metodo-alpha .passo:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.metodo-alpha .passo:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.metodo-alpha .passo::before {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background-color: #2d2786;
+  border-radius: 50%;
+}
+
+.metodo-alpha .passo .numero {
+  font-size: 0.875rem;
+  color: #aaa;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metodo-alpha .passo h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.metodo-alpha .passo p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #d0d0d0;
+  max-width: 95%;
+}
+
+/* === RESPONSIVO === */
+@media (max-width: 768px) {
+  .metodo-alpha .conteudo {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .metodo-alpha .linha-do-tempo {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .metodo-alpha .passo::before {
+    display: none;
+  }
+
+  .metodo-alpha .passo {
+    padding: 0 10px;
+  }
+
+  .metodo-alpha .titulo {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .metodo-alpha .passo h3 {
+    font-size: 1.125rem;
+  }
+
+  .metodo-alpha .passo p {
+    font-size: 0.95rem;
+  }
+}
+
+/* === ANIMAÇÃO === */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

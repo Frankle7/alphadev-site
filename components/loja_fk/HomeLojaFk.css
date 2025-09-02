@@ -1,0 +1,159 @@
+
+
+.loja-container {
+   margin-top: 80px; /* ajuste esse valor conforme o espaço que quiser */
+  /* suas outras regras */
+  position: relative; /* necessário para o ::before ficar dentro */
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  padding: 40px 20px;
+  overflow: hidden; /* para evitar que o ::before ultrapasse */
+}
+
+.loja-container::before {
+  content: "";
+  position: absolute; 
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('../../public/assets/images/fundo.JPG');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.01; /* aqui você controla a opacidade da imagem */
+  z-index: 0; /* atrás do conteúdo */
+}
+
+.loja-container > * {
+  position: relative;
+  z-index: 1; /* conteúdo fica acima da imagem */
+}
+
+.banner {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.banner h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: rgba(30, 144, 255, 0.9); /* dodger blue com opacidade */
+  text-shadow: 1px 1px 5px rgba(0, 0, 139, 0.5);
+  margin-bottom: 20px;
+}
+
+.produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto 40px auto;
+}
+
+.produto {
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imagem-container {
+  position: relative;
+  width: 100%;
+}
+
+.imagem-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.destaque {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #136db7;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+h3 {
+  margin: 16px 0 4px;
+  font-size: 1rem;
+}
+
+.marca {
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.preco {
+  font-weight: bold;
+  color: #fff;
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+.btn {
+  margin-top: 12px;
+  background-color: #136db7;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0f5ba1;
+}
+
+.btn.primario {
+  background-color: #28a745;
+}
+
+.btn.primario:hover {
+  background-color: #218838;
+}
+
+.detalhes-produto {
+  margin-top: 20px;
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.detalhes-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.detalhes-grid .col {
+  flex: 1;
+  min-width: 220px;
+}
+
+.acoes-produto {
+  margin-top: 20px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .detalhes-grid {
+    flex-direction: column;
+  }
+}
