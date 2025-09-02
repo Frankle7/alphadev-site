@@ -1,0 +1,134 @@
+.heroSection {
+  position: relative;
+  padding: 160px 24px 100px;
+  background: linear-gradient(to right, #0f172a, #1e293b);
+  overflow: hidden;
+  animation: fadeIn 1s ease;
+  z-index: 0;
+}
+
+/* Fundo com imagem + blur + escurecimento */
+.heroSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/images/mrprogramer.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4) blur(8px);
+  z-index: -2;
+}
+
+.heroSection::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  z-index: -1;
+}
+
+/* Layout flexível */
+.heroContentWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+/* Textos */
+.heroTextContainer {
+  flex: 1;
+  min-width: 300px;
+  max-width: 580px;
+  text-align: left;
+  color: #f9fafb;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin-bottom: 2rem;
+}
+
+/* Botão */
+.botaoCTA {
+  background-color: #0070f3; /* azul vibrante */
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 112, 243, 0.2);
+}
+
+.botaoCTA:hover {
+  background-color: #005ec4;
+  transform: scale(1.03);
+}
+
+.botaoCTA:active {
+  transform: scale(0.97);
+}
+
+/* Imagem */
+.heroImageContainer {
+  flex-shrink: 0;
+  width: 420px;
+  height: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.heroImageContainer:hover {
+  transform: scale(1.04);
+}
+
+/* Responsivo */
+@media (max-width: 960px) {
+  .heroContentWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .heroTitle {
+    font-size: 2.2rem;
+  }
+
+  .heroImageContainer {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    align-self: center;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
