@@ -4,119 +4,116 @@ import './page.css';
 import Header from '@/components/section_header/Header';
 import Footer from '@/components/section_footer/Footer';
 
+type FormData = {
+  nome: string;
+  email: string;
+  telefone: string;
+  rg: string;
+  empresa: string;
+  mensagem: string;
+  aceite: boolean;
+};
+
+type FormErrors = Partial<Record<keyof FormData, string>>;
+
 const Formulario = () => {
-  // Dados iniciais preenchidos com exemplo fixo para teste
-  // Você pode alterar esses valores, ou deixar vazio para o usuário preencher
-  const [formData, setFormData] = useState({
-    nome: '',          // Nome exemplo
-    email: '',     // Email exemplo
-    telefone: '',  // Telefone exemplo
-    empresa: '',             // Empresa exemplo
-    rg: '',               // RG exemplo (apenas números)
-    mensagem: '',                 // Mensagem inicial vazia
-    aceite: false                 // Aceite LGPD desmarcado inicialmente
+  const [formData, setFormData] = useState<FormData>({
+    nome: '',
+    email: '',
+    telefone: '',
+    rg: '',
+    empresa: '',
+    mensagem: '',
+    aceite: false
   });
 
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
 
   // Máscara simples para telefone
   const maskTelefone = (value: string) => {
     let v = value.replace(/\D/g, '');
     if (v.length > 11) v = v.slice(0, 11);
-
     if (v.length <= 2) return `(${v}`;
     if (v.length <= 6) return `(${v.slice(0, 2)}) ${v.slice(2)}`;
     if (v.length <= 10) return `(${v.slice(0, 2)}) ${v.slice(2, 6)}-${v.slice(6)}`;
     return `(${v.slice(0, 2)}) ${v.slice(2, 7)}-${v.slice(7)}`;
   };
 
-  // Máscara simples para RG (apenas números, até 9 dígitos)
-  const maskRG = (value: string) => {
-    let v = value.replace(/\D/g, '');
-    if (v.length > 9) v = v.slice(0, 9);
-    return v;
-  };
+  // Máscara simples para RG
+  const maskRG = (value: string) => value.replace(/\D/g, '').slice(0, 9);
 
   // Atualiza valores no formulário
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
 
-    if (e.target instanceof HTMLInputElement && e.target.type === 'checkbox') {
-      setFormData({ ...formData, [name]: e.target.checked });
-    } else {
-      if (name === 'telefone') {
-        setFormData({ ...formData, telefone: maskTelefone(value) });
-      } else if (name === 'rg') {
-        setFormData({ ...formData, rg: maskRG(value) });
-      } else {
-        setFormData({ ...formData, [name]: value });
-      }
-    }
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
-  // Validação simples dos campos
-  const validate = () => {
-    const newErrors: { [key: string]: string } = {};
+  // Validação dos campos
+  const validate = (): FormErrors => {
+    const newErrors: FormErrors = {};
 
-    if (!formData.nome.trim()) {
-      newErrors.nome = 'Nome é obrigatório.';
-    } else if (!formData.nome.trim().includes(' ')) {
-      newErrors.nome = 'Informe seu nome completo.';
-    }
+    if (!formData.nome.trim()) newErrors.nome = 'Nome é obrigatório.';
+    else if (!formData.nome.includes(' ')) newErrors.nome = 'Informe seu nome completo.';
 
-    if (!formData.email.trim()) {
-      newErrors.email = 'E-mail é obrigatório.';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'E-mail inválido.';
-    }
+    if (!formData.email.trim()) newErrors.email = 'E-mail é obrigatório.';
+    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'E-mail inválido.';
 
-    if (formData.telefone && !/^\(\d{2}\) \d{4,5}-\d{4}$/.test(formData.telefone)) {
+    if (formData.telefone && !/^\(\d{2}\) \d{4,5}-\d{4}$/.test(formData.telefone))
       newErrors.telefone = 'Telefone inválido. Ex: (11) 91234-5678';
-    }
 
-    if (formData.rg && !/^\d{7,9}$/.test(formData.rg)) {
+    if (formData.rg && !/^\d{7,9}$/.test(formData.rg))
       newErrors.rg = 'RG inválido. Use apenas números, entre 7 e 9 dígitos.';
-    }
 
-    if (!formData.aceite) {
-      newErrors.aceite = 'Você precisa aceitar os termos.';
-    }
+    if (!formData.aceite) newErrors.aceite = 'Você precisa aceitar os termos.';
 
     return newErrors;
   };
 
-  // Envio dos dados para Google Apps Script
+  // Envio dos dados
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const validationErrors = validate();
-    setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length === 0) {
-      try {
-        const response = await fetch(
-          'http://localhost:5000/formulario',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-          }
-        );
+    // Valida campos antes de enviar
+    const newErrors = validate();
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
 
-        const result = await response.json();
-        if (result.status === 'success') {
-          setSubmitted(true);
-        } else {
-          alert('Erro ao enviar o formulário: ' + (result.message || 'Erro desconhecido'));
-        }
-      } catch (error) {
-        alert('Erro ao enviar os dados. Verifique a conexão ou o servidor.');
-        console.error(error);
+    try {
+      // Cria payload para API
+      const payload = {
+        name: formData.nome,
+        email: formData.email,
+        telefone: formData.telefone,
+        rg: formData.rg,
+        empresa: formData.empresa,
+        mensagem: formData.mensagem,
+        aceite: formData.aceite
+      };
+
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.status === "success") {
+        setSubmitted(true);
+      } else {
+        alert("Erro ao enviar o formulário: " + (result.error || "Erro desconhecido"));
       }
+    } catch (err) {
+      console.error("Erro no fetch:", err);
+      alert("Erro de conexão com o servidor");
     }
   };
 
