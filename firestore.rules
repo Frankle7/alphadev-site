@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /leads/{id} {
+      allow read, create: if request.auth != null; // exige usuário autenticado
+      allow update, delete: if false;              // ajuste conforme sua necessidade
+    }
+  }
+}
